@@ -20,11 +20,6 @@ namespace CST_356_Week_7_Lab.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
 
         public ApplicationSignInManager SignInManager
         {

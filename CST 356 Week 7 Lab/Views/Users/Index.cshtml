@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CST_356_Week_7_Lab.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Students";
+}
+
+@if (Model.Count() > 2)
+{
+    <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Warning</strong> You have more than 2 users.
+    </div>
+}
+    <div class="card bg-dark text-light" id="title-card">
+        <div class="row">
+            <h2 class="col-md-10" id="title-card-header">Students</h2>
+            <div class="col-md-2" id="title-card-button">
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info btn-lg " })
+            </div>
+        </div>
+    </div>
+<table class="table table-striped table-hover table-bordered" id="students-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearsInSchool)
+        </th>
+        <th>
+            @Html.DisplayName("Classes")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="table-row">
+            <td id="first-name">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td id="last-name">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearsInSchool)
+            </td>
+            <td>
+                @Html.ActionLink("Classes", "Index", "Class", new { userID = item.ID }, new { @class = "btn btn-outline-success btn-sm" })
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-warning btn-sm" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-info btn-sm" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Selected Row</h4>
+        <p class="card-text" id="selected-row">Select a row</p>
+    </div>
+</div>
+<button id="Show" class="btn btn-default" style="margin-top:10px;">Show</button>
+<button id="Hide" class="btn btn-default" style="margin-top:10px;">Hide</button>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#Show").hide();
+            $("#Show").click(function () {
+                $("#students-table").fadeIn(400, function () {
+                    
+                    $("#Hide").fadeIn()
+                });
+                ; $("#Show").hide();
+            });
+            $("#Hide").click(function () {
+                $("#students-table").fadeOut(400, function () {
+
+                    $("#Show").fadeIn();
+                });
+                $("#Hide").hide();
+                
+            });
+            $(".table-row").click(function () {
+                var firstName = $(this).find("#first-name").text().trim();
+                var lastName = $(this).find("#last-name").text().trim();
+                $("#selected-row").text("Selected Student: " + firstName + " " + lastName);
+            });
+
+        });
+    </script>
+}

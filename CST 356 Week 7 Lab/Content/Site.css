@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -16,9 +16,32 @@
     white-space: normal;
 }
 
+.nav-link {
+    color:white;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#title-card {
+    margin-top: 10px;
+}
+
+#title-card-header {
+    /*display: inline-block;*/
+    margin-top: 15px;
+    padding: 10px;
+    padding-left:35px;
+}
+
+#title-card-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

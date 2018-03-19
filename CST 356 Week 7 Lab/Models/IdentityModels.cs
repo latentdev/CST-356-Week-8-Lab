@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CST_356_Week_7_Lab.Data.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -18,16 +19,30 @@ namespace CST_356_Week_7_Lab.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class DatabaseContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public virtual DbSet<Class> Classes { get; set; }
+        public DatabaseContext()
+            : base("DefaultConnection2", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static DatabaseContext Create()
         {
-            return new ApplicationDbContext();
+            return new DatabaseContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new AppDbInitializer());
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public System.Data.Entity.DbSet<CST_356_Week_7_Lab.Models.ClassViewModel> ClassViewModels { get; set; }
+    }
+
+    public class AppDbInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
+    {
+        // intentionally left blank
     }
 }

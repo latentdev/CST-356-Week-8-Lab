@@ -1,0 +1,51 @@
+﻿@model CST_356_Week_7_Lab.Models.ClassViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="card" id="title-card">
+    <h4 class="card-header bg-info text-light">@Html.DisplayFor(model => model.ClassName)</h4>
+    <dl class="dl-horizontal card-body">
+        <dt>
+            @Html.DisplayNameFor(model => model.CRN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CRN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClassName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartTime.TimeOfDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndTime.TimeOfDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassLength)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClassLength.TotalHours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Instructor)
+        </dd>
+    </dl>
+</div>
+<div class=" btn btn-group" style="padding-left:0px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Back to List", "Index", new { userID = Model.ID }, new { @class = "btn btn-info" })
+</div>
